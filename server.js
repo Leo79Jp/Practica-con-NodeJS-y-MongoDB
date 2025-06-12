@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.disable('x-powered-by')
 
 app.get('/', (req, res) => {
     res.send('Bienvenido a la API de MongoDB con NodeJS');
@@ -51,7 +52,8 @@ app.get('/frutas/nombre/:nombre', async(req, res) => {
     const regExp = new RegExp(/^[a-z]+$/);
     if(!regExp.test(nombre)) {
         res.status(400).json({error: 'Nombre no valido'});
-    }
+    }else{
+
     const client = await connect();
     try {
         const db = client.db('frutasDB');
@@ -68,6 +70,8 @@ app.get('/frutas/nombre/:nombre', async(req, res) => {
     }finally {
         disconnect();
     }
+        }
+
 });
 
 app.get('/frutas/precio/:precio', async(req, res) => {
@@ -75,23 +79,26 @@ app.get('/frutas/precio/:precio', async(req, res) => {
     const regExp = new RegExp(/^[0-9]+$/);
     if(!regExp.test(precio)) {
         res.status(400).json({error: 'Precio no valido'});
-    }
-    const client = await connect();
-    try {
-        const db = client.db('frutasDB');
-        const frutas = await db.collection('frutas').find({}).toArray();
-        if(!frutas) {
-            res.status(404).json({error: 'No hay frutas'});
+    }else{
+
+        const client = await connect();
+        try {
+            const db = client.db('frutasDB');
+            const frutas = await db.collection('frutas').find({}).toArray();
+            if(!frutas) {
+                res.status(404).json({error: 'No hay frutas'});
+            }
+            const precios = frutas.filter((fruta) =>
+                fruta.precio >= parseInt(precio)
+            )
+            res.json(precios);
+        } catch (err) {
+            res.status(500).json({error: 'Error al conectar a la base de datos'});
+        }finally {
+            disconnect();
         }
-        const precios = frutas.filter((fruta) =>
-            fruta.precio >= parseInt(precio)
-        )
-        res.json(precios);
-    } catch (err) {
-        res.status(500).json({error: 'Error al conectar a la base de datos'});
-    }finally {
-        disconnect();
     }
+
 });
 
 
