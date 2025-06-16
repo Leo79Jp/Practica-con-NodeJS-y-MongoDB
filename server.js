@@ -80,7 +80,6 @@ app.get("/frutas/precio/:precio", async (req, res) => {
   }
 });
 
-
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
 });
