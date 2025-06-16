@@ -7,25 +7,18 @@ GET http://localhost:3000/
 GET http://localhost:3000/frutas
 
 ###
-// Muestra la fruta con el ID 13
-GET http://localhost:3000/frutas/13
+// Muestra la fruta con el ID 683f8aa68cb4cf5d3e925cd7
+GET http://localhost:3000/frutas/683f8aa68cb4cf5d3e925cd7
 
 ###
-// Muestra todas las frutas con nombre "mango" 
-GET http://localhost:3000/frutas/nombre/mango
+// Muestra todas las frutas con nombre "Mango" 
+GET http://localhost:3000/frutas/nombre/Mango
 
 ###
-// Muestra todas las frutas con nombre parcial que contenga "ngo"
-GET http://localhost:3000/frutas/nombre/bana
-
-###
-// Prueba de RegExp que no contenga espacios, simbolos o numeros
-GET http://localhost:3000/frutas/nombre/ma*ngo
+// Muestra todas las frutas con nombre parcial que contenga "Bana"
+GET http://localhost:3000/frutas/nombre/Bana
 
 ###
 // Muestra todas las frutas con precio mayor o igual que 680
 GET http://localhost:3000/frutas/precio/680
 
-###
-// Prueba de RegExp que no contenga espacios, simbolos o letras
-GET http://localhost:3000/frutas/precio/68*0

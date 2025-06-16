@@ -1,7 +1,5 @@
 process.loadEnvFile();
-
-const {MongoClient} = require('mongodb');
-
+const { MongoClient } = require('mongodb');
 const client = new MongoClient(process.env.MONGODB_URI)
 
 async function connect() {
