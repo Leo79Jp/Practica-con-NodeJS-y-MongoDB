@@ -22,3 +22,34 @@ GET http://localhost:3000/frutas/nombre/Bana
 // Muestra todas las frutas con precio mayor o igual que 680
 GET http://localhost:3000/frutas/precio/680
 
+###
+// Crea una nueva fruta
+POST http://localhost:3000/frutas/
+Content-Type: application/json
+
+{
+    "id" : 20,
+    "imagen": "🍑",
+    "nombre": "Melocoton",
+    "precio": 1900
+}
+
+###
+// Borra la fruta con el ID cargado en la url
+DELETE http://localhost:3000/frutas/6850c8212d43f91ad7b66f3e
+Content-Type: application/json
+
+
+### 
+// Actualiza la fruta con el ID cargado en la url
+PATCH http://localhost:3000/frutas/683f8aa68cb4cf5d3e925cd6             
+Content-Type: application/json  
+
+{
+    "precio": 8800
+}
+
+
+###
+// Muestra la fruta con el ID 683f8aa68cb4cf5d3e925cd6 que es la que se ha actualizado
+GET http://localhost:3000/frutas/683f8aa68cb4cf5d3e925cd6
